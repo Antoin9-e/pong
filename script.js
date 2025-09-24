@@ -17,6 +17,8 @@ let fin = false;
 
 let acceleration = 1.25;
 
+
+
 //objet : balle et objet paddle
 
 function showModal() {
@@ -140,7 +142,14 @@ function moveBall2(){
 
     //Gestion paddle 
     if(ball.y + ball.vy  >= canvasH-(paddle.heightSize+paddle.heightTop) && ball.x > paddle.paddleX && ball.x < paddle.paddleX+paddle.witdhSize){
-        ball.vy *= -1;
+        if(ball.vy < ball.speed * 5){
+            ball.vy *= -1 * acceleration;
+        }else{
+            ball.vy *= -1;
+
+
+        }
+
         console.log('paddle touché');
 
 
@@ -172,13 +181,26 @@ function moveBall2(){
 
     //Gestion balle touche plafond
     if ( ball.y + ball.vy < 0) {
+
+        if(ball.vy < ball.speed * 5){
+            ball.vy *= -1 * acceleration;
+        }else{
         ball.vy *= -1;
+        }
       }
     //
 
     //Gestion balle touche les murs
     if (ball.x + ball.vx > canvas.width || ball.x + ball.vx < 0) {
-        ball.vx *= -1;
+
+        if(ball.vy < ball.speed * 5){
+
+            ball.vy *= acceleration;
+        }else{
+            ball.vx *= -1;
+
+        }
+
       }
 }
 
