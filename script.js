@@ -15,7 +15,18 @@ const topborder = 5;
 
 let fin = false;
 
+let acceleration = 1.25;
+
 //objet : balle et objet paddle
+
+function showModal() {
+    document.getElementById('myModal').classList.remove('hidden');
+}
+
+// Fermer la modale
+function closeModal() {
+    document.getElementById('myModal').classList.add('hidden');
+}
 
 var paddle = {
     speed : 10,
@@ -43,10 +54,10 @@ var paddle = {
 
 var ball = {
     x: canvasW/2,
-    y: 3*(canvasH/4),
+    y: 3.8*(canvasH/4),
     radius: 5,
-    vx: -4,
-    vy: -4,
+    vx: 0,
+    vy: 0,
     speed: 4,
    
     draw: function () {
@@ -58,9 +69,9 @@ var ball = {
     resetPosition: function(){
 
         this.x= canvasW/2,
-        this.y= 3*(canvasH/4)
-        this.vx = -4;
-        this.vy = -4;
+        this.y= 3.8*(canvasH/4)
+        this.vx = 0;
+        this.vy = 0;
 
     }
   };
@@ -127,11 +138,20 @@ function moveBall2(){
     ball.x += ball.vx;
     ball.y += ball.vy;
 
+    //Gestion paddle 
     if(ball.y + ball.vy  >= canvasH-(paddle.heightSize+paddle.heightTop) && ball.x > paddle.paddleX && ball.x < paddle.paddleX+paddle.witdhSize){
-        ball.vy = -ball.vy;
+        ball.vy *= -1;
         console.log('paddle touché');
 
+
+        
     }
+
+    //
+
+    const score2 = document.getElementById('score2');
+
+    //Gestion balle touche le sol
 
     if(ball.y + ball.vy > canvasH){
         canvas.classList.add('border-red-500');
@@ -146,18 +166,26 @@ function moveBall2(){
         clear();
         ball.draw();
         paddle.draw();
+        score2.innerHTML = score.innerHTML;
+        showModal();
     }
 
+    //Gestion balle touche plafond
     if ( ball.y + ball.vy < 0) {
-        ball.vy = -ball.vy*1.01;
+        ball.vy *= -1;
       }
-      if (ball.x + ball.vx > canvas.width || ball.x + ball.vx < 0) {
-        ball.vx = -ball.vx*1.01;
+    //
+
+    //Gestion balle touche les murs
+    if (ball.x + ball.vx > canvas.width || ball.x + ball.vx < 0) {
+        ball.vx *= -1;
       }
 }
 
 
 let temps = 0;
+
+
 
 
 
@@ -193,30 +221,71 @@ intervalle = setInterval(()=>{
 //Lancer la partie
 
 function startGame(){
+
+    //Timer
     if(clearInterval(intervalle))console.log('clear');
     temps = 0;
     score.innerHTML = 0;
     timer();
+    //
     
-    
-    
+    //gestion relancement partie
     fin = true;
     if(fin) window.cancelAnimationFrame(raf);
     ball.resetPosition();
     paddle.resetPosition();
+    //
+
+    //start partie
     fin = false;
+        //direction random début partie
+        let sens = getSens();
+        if(sens == 1)ball.vx = getRandomVx();
+        if(sens == 0)ball.vx = -getRandomVx();
+
+        ball.vy = -ball.speed;
+        //
     canvas.classList.remove("border-red-500");
     draw();
+    //
+
+
+
+
     
 }
 
+function getRandomVx(){
+    return Math.floor(Math.random()* 2 ) + 1;
+}
 
-leftBtn.addEventListener("click",()=>{
-    console.log("BtnGauche")
+function getSens(){
+    return  Math.floor(Math.random()* 2);
+}
+
+
+leftBtn.addEventListener("mousedown",()=>{
+    leftBtn.classList.add('bg-opacity-50');
+
+    moveLeft = true;
 })
-rightBtn.addEventListener("click",()=>{
-    console.log("BtnGDroit")
-})
+
+leftBtn.addEventListener("mouseup",()=>{
+    leftBtn.classList.remove('bg-opacity-50');
+
+    moveLeft = false;
+}) 
+rightBtn.addEventListener("mousedown",()=>{
+    rightBtn.classList.add('bg-opacity-50');
+
+    moveRight = true;
+ })
+ rightBtn.addEventListener("mouseup",()=>{
+    rightBtn.classList.remove('bg-opacity-50');
+
+    
+    moveRight = false;
+ })
 
 
 start.addEventListener("click",()=>
