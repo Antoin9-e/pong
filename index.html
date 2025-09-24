@@ -1,53 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pong</title>
-    <script src="https://cdn.tailwindcss.com"></script></head>
-<body >
-    <div class=" w-full h-full flex-col flex items-center ">
-        <div class="w-[80%] min-h-screen items-center justify-center">
-            <h1 class="font-bold text-3xl text-center mt-5"> Pong </h1>
-            <canvas id="game" width="350" height="600"   class="w-[350px] h-[600px] mx-auto border-2 border-gray-500 mt-5 ">
-            </canvas>
-            <div class="flex gap-x-10 items-center justify-center mt-5">
-                <button id="leftBtn"class="bg-gray-300 drop-shadow-2xl p-4 rounded-xl">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#1f1f1f"><path d="M400-240 160-480l240-240 56 58-142 142h486v80H314l142 142-56 58Z"/></svg>
-                </button>
-                <button id="rightBtn"class="bg-gray-300 drop-shadow-2xl p-4 rounded-xl">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#1f1f1f"><path d="m560-240-56-58 142-142H160v-80h486L504-662l56-58 240 240-240 240Z"/></svg>               
-                 </button>
-            </div>
-
-            <div class="justify-center items-center flex">
-                <h2>Score : <span id="score" class="font-bold text-xl">0</span> s</h2>
-            </div>
-
-            <div class="flex gap-x-20 justify-center mt-5">
-                <button id = "start" class="bg-pink-500 drop-shadow-2xl p-4 rounded-xl">
-                    Lancer la Partie
-                </button>
-                
-            </div>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="h-screen">
+    <div class="w-full h-full flex-col flex items-center">
+      <div class="w-[80%] h-screen items-center justify-center">
+        <h1 class="font-bold text-3xl text-center mt-5">Pong</h1>
+        <canvas
+          id="game"
+          width="350"
+          height="600"
+          class="w-[350px] h-[600px] mx-auto border-2 border-gray-500 mt-5"
+        >
+        </canvas>
+        <div class="flex gap-x-10 items-center justify-center mt-5">
+          <button
+            id="leftBtn"
+            class="bg-gray-300 drop-shadow-2xl p-4 rounded-xl"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="48px"
+              viewBox="0 -960 960 960"
+              width="48px"
+              fill="#1f1f1f"
+            >
+              <path
+                d="M400-240 160-480l240-240 56 58-142 142h486v80H314l142 142-56 58Z"
+              />
+            </svg>
+          </button>
+          <button
+            id="rightBtn"
+            class="bg-gray-300 drop-shadow-2xl p-4 rounded-xl"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="48px"
+              viewBox="0 -960 960 960"
+              width="48px"
+              fill="#1f1f1f"
+            >
+              <path
+                d="m560-240-56-58 142-142H160v-80h486L504-662l56-58 240 240-240 240Z"
+              />
+            </svg>
+          </button>
         </div>
-        <div id="myModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
-            <div class="bg-white p-8 rounded-lg w-96 text-center shadow-xl">
-                <img src="Asset/imageloose.png" alt="Image d'alerte" class="mx-auto mb-4 rounded-lg">
-                <p class="text-lg font-semibold mb-4">Gros Noob !</p>
-                <p class="text-lg font-semibold mb-4">Ton score est de <span id ="score2"></span> s ! </p>
 
-
-                <button onclick="closeModal()" class="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-300">
-                    Fermer
-                </button>
-            </div>
+        <div class="justify-center items-center flex">
+          <h2>Score : <span id="score" class="font-bold text-xl">0</span> s</h2>
         </div>
 
-        
+        <div class="flex gap-x-20 justify-center mt-5">
+          <button id="start" class="bg-pink-500 drop-shadow-2xl p-4 rounded-xl">
+            Lancer la Partie
+          </button>
+        </div>
+      </div>
+      <div
+        id="myModal"
+        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden"
+      >
+        <div class="bg-white p-8 rounded-lg w-96 text-center shadow-xl">
+          <img
+            src="Asset/imageloose.png"
+            alt="Image d'alerte"
+            class="mx-auto mb-4 rounded-lg"
+          />
+          <p class="text-lg font-semibold mb-4">Gros Noob !</p>
+          <p class="text-lg font-semibold mb-4">
+            Ton score est de <span id="score2"></span> s !
+          </p>
+
+          <button
+            onclick="closeModal()"
+            class="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-300"
+          >
+            Fermer
+          </button>
+        </div>
+      </div>
     </div>
-    
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
