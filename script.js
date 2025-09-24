@@ -185,7 +185,7 @@ let intervalle ;
 function timer(){
 intervalle = setInterval(()=>{
     temps++;
-    score.innerHTML = +temps;
+    score.innerHTML = temps;
 },1000);
 }
 
