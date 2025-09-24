@@ -6,15 +6,15 @@
     <title>Pong</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="h-screen">
+  <body class="max-h-screen w-full">
     <div class="w-full h-full flex-col flex items-center">
-      <div class="w-[80%] h-screen items-center justify-center">
+      <div class="w-[80%] items-center justify-center">
         <h1 class="font-bold text-3xl text-center mt-5">Pong</h1>
         <canvas
           id="game"
           width="350"
-          height="600"
-          class="w-[350px] h-[600px] mx-auto border-2 border-gray-500 mt-5"
+          height="500"
+          class="w-[350px] h-[400px] mx-auto border-2 border-gray-500 mt-20"
         >
         </canvas>
         <div class="flex gap-x-10 items-center justify-center mt-5">
@@ -56,7 +56,7 @@
           <h2>Score : <span id="score" class="font-bold text-xl">0</span> s</h2>
         </div>
 
-        <div class="flex gap-x-20 justify-center mt-5">
+        <div class="flex justify-center mt-5">
           <button id="start" class="bg-pink-500 drop-shadow-2xl p-4 rounded-xl">
             Lancer la Partie
           </button>
