@@ -50,7 +50,6 @@ var ball = {
     speed: 4,
    
     draw: function () {
-        console.log(this.x, this.y, this.vx, this.vy)
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
       ctx.closePath();
@@ -87,7 +86,6 @@ let moveRight = false;
 
 document.addEventListener("keydown",(event)=>{
     if(event.key == "ArrowLeft"){
-        console.log("appui");
         leftBtn.classList.add('bg-opacity-50');
         moveLeft = true;
     }
@@ -103,7 +101,6 @@ document.addEventListener("keydown",(event)=>{
 //
 document.addEventListener("keyup",(event)=>{
     if(event.key == "ArrowLeft"){
-        console.log("désapppui");
         leftBtn.classList.remove('bg-opacity-50');
 
         moveLeft = false;
@@ -138,6 +135,8 @@ function moveBall2(){
 
     if(ball.y + ball.vy > canvasH){
         canvas.classList.add('border-red-500');
+        if(clearInterval(intervalle))console.log('Intervale clear');
+
         
         ball.resetPosition();
         clear();
@@ -150,12 +149,15 @@ function moveBall2(){
     }
 
     if ( ball.y + ball.vy < 0) {
-        ball.vy = -ball.vy;
+        ball.vy = -ball.vy*1.01;
       }
       if (ball.x + ball.vx > canvas.width || ball.x + ball.vx < 0) {
-        ball.vx = -ball.vx;
+        ball.vx = -ball.vx*1.01;
       }
 }
+
+
+let temps = 0;
 
 
 
@@ -177,19 +179,27 @@ function draw(){
 }
 
 
-
 //requestAnimationFrame
 //cancelAnimationFrame
-
-
-// dessiner la balle
-
+let intervalle ;
+function timer(){
+intervalle = setInterval(()=>{
+    temps++;
+    score.innerHTML = +temps;
+},1000);
+}
 
 
 //Lancer la partie
 
 function startGame(){
-
+    if(clearInterval(intervalle))console.log('clear');
+    temps = 0;
+    score.innerHTML = 0;
+    timer();
+    
+    
+    
     fin = true;
     if(fin) window.cancelAnimationFrame(raf);
     ball.resetPosition();
