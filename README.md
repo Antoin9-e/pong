@@ -8,6 +8,9 @@ Un projet d'étude visant à recréer le célèbre jeu d'arcade **Pong**. Ce pro
 
 ## 🚀 Aperçu
 Le jeu se présente comme un pong sauf qu'il n'y a qu'un seul joueur. Le but étant de ne pas laisser la balle tomber.
+<p align="center">
+  <img src="Asset/415_1x_shots_so.png" alt="Aperçu du Pong" width="600">
+</p>
 
 
 
